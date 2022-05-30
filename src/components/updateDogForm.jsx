@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, InputNumber } from 'antd';
+import { Form, Input, Button, InputNumber, Select } from 'antd';
 import { status, json } from '/utilities/requestHandlers';
 import GoHomeButton from './goHome';
 import UserContext from '../contexts/user';
@@ -18,14 +18,16 @@ class UpdateDogForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: props.selected
+      selected: props.selected,
+      posts: [],
+      articlesID: [],
     };
     this.onFinish = this.onFinish.bind(this);
 
   }
 
   static contextType = UserContext;
-
+ 
   onFinish = (values) => {
     console.log('Received values of form: ', values);
     const { confirm, ...data } = values;  // ignore the 'confirm' value
@@ -56,6 +58,7 @@ class UpdateDogForm extends React.Component {
 
 
   render() {
+    const { posts } = this.state;
     if (this.context.user.registerOK == true) {//alert("You have already login")
       return (<div>
         <h2> Registration Completed ! </h2>
@@ -67,26 +70,23 @@ class UpdateDogForm extends React.Component {
     else {
       return (
         <Form {...formItemLayout} name="register" scrollToFirstError onFinish={this.onFinish}>
-<Form.Item
-        name="gender"
-        label="Gender"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Select
-          placeholder="Select a option and change input text above"
-          onChange={onGenderChange}
-          allowClear
-        >
-          <Option value="male">male</Option>
-          <Option value="female">female</Option>
-          <Option value="other">other</Option>
-        </Select>
-      </Form.Item>
-         
+          <Form.Item
+            name="gender"
+            label="Gender"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            {console.log("post id N", posts)}
+            {posts.map(id => (
+              <Option key={id}>{id}</Option>
+            ))}
+
+
+          </Form.Item>
+
         </Form>
       );
     }

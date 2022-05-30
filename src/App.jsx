@@ -15,7 +15,9 @@ import UserContext from './contexts/user';
 import HumanManage from './components/humanManage';
 import UploadDog from './components/uploadDog';
 import UpdateDog from './components/updateDog';
+import UpdateDoginfo from './components/updateDoginfo';
 import { useNavigate } from 'react-router-dom';
+
 const { Header, Content, Footer, Button } = Layout;
 
 
@@ -85,6 +87,7 @@ class App extends React.Component {
                 <Route path="/humanManage" element={<HumanManage />} />
                 <Route path="/uploadDog" element={<UploadDog />} />
                 <Route path="/updateDog" element={<UpdateDog />} />
+                <Route path="/updateDoginfo" element={<UpdateDoginfo />} />
               </Routes>
             </Content>
 

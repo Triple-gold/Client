@@ -33,6 +33,7 @@ function Nav(props) {
             <Menu.Item key="humanManage" >ManageDog<Link to="/humanManage"></Link></Menu.Item>
             <Menu.Item key="uploadDog" >Upload Dog<Link to="/uploadDog"></Link></Menu.Item>
             <Menu.Item key="updateDog" >Update Dog<Link to="/updateDog"></Link></Menu.Item>
+            <Menu.Item key="updateDoginfo" >Update Dog<Link to="/updateDoginfo"></Link></Menu.Item>
 
             <SubMenu key="rightMenu" theme="dark" mode='horizontal' style={rightStyle} title={user.loggedIn && <span>{user.username}</span>} icon={<UserOutlined />} >
               {!user.loggedIn && <Menu.Item key="login" type="primary"  > <Link to="/login">Login</Link>
@@ -51,7 +52,7 @@ function Nav(props) {
             <Menu theme="" mode="horizontal" >
               <Menu.Item key="humanManage" >Human Manage<Link to="/humanManage"></Link></Menu.Item>
               <Menu.Item key="uploadDog" >Upload Dog<Link to="/uploadDog"></Link></Menu.Item>
-              <Menu.Item key="updateDog" >Update Dog<Link to="/updateDog"></Link></Menu.Item>
+              <Menu.Item key="updateDoginfo" >Update Dog<Link to="/updateDoginfo"></Link></Menu.Item>
             </Menu>
           }
         </>
