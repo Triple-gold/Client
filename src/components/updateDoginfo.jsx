@@ -68,7 +68,7 @@ function TableDemo(props) {
         //   setRows(id=1,title=pet.title,alltext=pet.alltext,summary=pet.summary))
 
         for (let i = 0; i < data.length; i++) {
-          setRows(oldArray => [...oldArray, { id: data[i].id, title: data[i].title, alltext: data[i].alltext, summary: data[i].summary, authorid: 1, imageurl: data[i].imageurl}])
+          setRows(oldArray => [...oldArray, { id: data[i].id, title: data[i].title, allText: data[i].allText, summary: data[i].summary, authorid: data[i].authorid, imageurl: data[i].imageurl }])
         }
 
         // setposts(posts.filter(posts=>
@@ -103,21 +103,22 @@ function TableDemo(props) {
       ...rows,
       {
         id: rows.length + 100, title: "",
-        alltext: "", summary: "",
+        allText: "", summary: "",
         imageurl: "", authorid: ""
       },
     ]);
-  console.log(authbasic);
+    console.log(authbasic);
 
-    fetch('https://Server.alexyu22.repl.co/api/v1/articles', {
+    fetch('https://Server.alexyu22.repl.co/api/v1/articles/', {
       method: 'POST',
       body: JSON.stringify({
         id: rows.length + 100, title: "",
-        alltext: "", summary: "",
+        allText: "", summary: "",
         imageurl: "", authorid: ""
       }),
       headers: {
         'Content-Type': 'application/json',
+        "Authorization": "Basic " + `${authbasic}`
       }
     })
       .then(status)
@@ -282,8 +283,10 @@ function TableDemo(props) {
           <TableHead>
             <TableRow>
               <TableCell>title</TableCell>
+              <TableCell>allText</TableCell>
               <TableCell>summary</TableCell>
-              <TableCell>alltext</TableCell>
+              <TableCell>authorid</TableCell>
+              <TableCell>imageurl </TableCell>
               <TableCell> </TableCell>
             </TableRow>
           </TableHead>
@@ -298,7 +301,6 @@ function TableDemo(props) {
                           <input
                             value={row.title}
                             name="title"
-
                             onChange={(e) => handleInputChange(e, i)}
                           />
                         </TableCell>
@@ -310,20 +312,14 @@ function TableDemo(props) {
                           />
                         </TableCell>
                         <TableCell padding="none">
-                          <select
-                            style={{ width: "100px" }}
-                            name="alltext"
-                            value={row.alltext}
+                          <input
+                            value={row.allText}
+                            name="allText"
                             onChange={(e) => handleInputChange(e, i)}
                           >
-                            <option value=""></option>
-                            <option value="adopted">adopted</option>
-                            <option value="adopt">adopt</option>
-                            <option value="special">special</option>
-
-                          </select>
+                          </input>
                         </TableCell>
-                         <TableCell padding="none">
+                        <TableCell padding="none">
                           <input
                             value={row.imageurl}
                             name="imageurl"
@@ -333,14 +329,14 @@ function TableDemo(props) {
                       </div>
                     ) : (
                         <div>
-                          <TableCell component="th" scope="row">
+                          <TableCell component="th" scope="row" >
                             {row.title}
                           </TableCell>
                           <TableCell component="th" scope="row">
                             {row.summary}
                           </TableCell>
                           <TableCell component="th" scope="row" align="center">
-                            {row.alltext}
+                            {row.allText}
                           </TableCell>
                           <TableCell
                             component="th"

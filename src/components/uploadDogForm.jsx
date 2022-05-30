@@ -1,9 +1,9 @@
 import React from 'react';
-import { Form, Input, Button, InputNumber } from 'antd';
+import { Form, Input, Button, InputNumber, message } from 'antd';
 import { status, json } from '/utilities/requestHandlers';
 import GoHomeButton from './goHome';
 import UserContext from '../contexts/user';
-
+const key = 'updatable';
 const formItemLayout = {
   labelCol: { xs: { span: 24 }, sm: { span: 6 } },
   wrapperCol: { xs: { span: 24 }, sm: { span: 12 } }
@@ -21,7 +21,15 @@ class UploadDogForm extends React.Component {
       selected: props.selected
     };
     this.onFinish = this.onFinish.bind(this);
+    fetch('https://Server.alexyu22.repl.co/api/v1/articles')
+      .then(status)
+      .then(json)
+      .then(data => {
+        this.setState({ posts: data })
+        //   console.log("post ", data)
+      })
 
+      .catch(err => console.log("Error fetching articles", err));
   }
 
   static contextType = UserContext;
@@ -40,10 +48,11 @@ class UploadDogForm extends React.Component {
       .then(status)
       .then(json)
       .then(data => {
+        message.success('successfully added!');
+
         // For you TODO: display success message and/or redirect
         console.log(data);
-        this.context.regComplete();
-        //     alert(`Registration Completed! Pls. press login or green button to continue `)      
+        //this.context.regComplete();
 
       })
       .catch(errorResponse => {
@@ -68,10 +77,10 @@ class UploadDogForm extends React.Component {
       return (
         <Form {...formItemLayout} name="register" scrollToFirstError onFinish={this.onFinish}>
 
-           <Form.Item name="authorID" label="authorID" >
+          <Form.Item name="authorID" label="authorID" >
             <InputNumber />
           </Form.Item>
-          
+
           <Form.Item name="title" label="title" >
             <Input />
           </Form.Item>
@@ -82,7 +91,7 @@ class UploadDogForm extends React.Component {
           <Form.Item name="summary" label="summary">
             <Input />
           </Form.Item>
-       
+
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit"  >
               Register

@@ -32,7 +32,7 @@ class UpdateDogForm extends React.Component {
     console.log('Received values of form: ', values);
     const { confirm, ...data } = values;  // ignore the 'confirm' value
     console.log("Json  ", JSON.stringify(data))
-    fetch('https://Server.alexyu22.repl.co/api/v1/articles', {
+    fetch('https://Server.alexyu22.repl.co/api/v1/articles/', {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
