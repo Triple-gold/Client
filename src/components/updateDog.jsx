@@ -1,5 +1,5 @@
 import React from 'react';
-import UploadDogForm from './uploadDogForm';
+import UpdateDogForm from './uploadDogForm';
 
 function UpdateDog() {
   
@@ -8,7 +8,7 @@ function UpdateDog() {
     <> 
     <h2 style={{ color: 'green' }}> Welcome to Blog User Registration</h2>     
      
-      <UploadDogForm />
+      <UpdateDogForm />
     </>
   )
 }

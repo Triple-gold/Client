@@ -13,7 +13,7 @@ const tailFormItemLayout = {
 };
 
 
-class UploadDogForm extends React.Component {
+class UpdateDogForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -67,28 +67,26 @@ class UploadDogForm extends React.Component {
     else {
       return (
         <Form {...formItemLayout} name="register" scrollToFirstError onFinish={this.onFinish}>
-
-           <Form.Item name="authorID" label="authorID" >
-            <InputNumber />
-          </Form.Item>
-          
-          <Form.Item name="title" label="title" >
-            <Input />
-          </Form.Item>
-
-          <Form.Item name="allText" label="alltext">
-            <Input />
-          </Form.Item>
-          <Form.Item name="summary" label="summary">
-            <Input />
-          </Form.Item>
-       
-          <Form.Item {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit"  >
-              Register
-            </Button>
-
-          </Form.Item>
+<Form.Item
+        name="gender"
+        label="Gender"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Select
+          placeholder="Select a option and change input text above"
+          onChange={onGenderChange}
+          allowClear
+        >
+          <Option value="male">male</Option>
+          <Option value="female">female</Option>
+          <Option value="other">other</Option>
+        </Select>
+      </Form.Item>
+         
         </Form>
       );
     }
@@ -98,4 +96,4 @@ class UploadDogForm extends React.Component {
 
 }
 
-export default UploadDogForm;
+export default UpdateDogForm;
