@@ -6,7 +6,7 @@ import BlogGrid from './bloggrid'
 function Home() {
   return (
     <> 
-    <h2 style={{ color: 'green' }}> Welcome to Blog client Demo</h2>     
+    <h2 style={{ color: 'green' }}> Welcome to The Canine Shelter</h2>     
      
       <BlogGrid />
     </>

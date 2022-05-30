@@ -187,9 +187,7 @@ function TableDemo(props) {
         //     alert(`Registration Completed! Pls. press login or green button to continue `)
       })
       .catch(errorResponse => {
-        // For you TODO: show nicely formatted error message and clear form
         console.error(errorResponse);
-        alert(`Error: ${errorResponse}`);
       });
 
 
