@@ -30,10 +30,8 @@ function Nav(props) {
           <div className="logo"></div>
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
             <Menu.Item key="Home" >Home<Link to="/"></Link></Menu.Item>
-            <Menu.Item key="humanManage" >Manage User<Link to="/humanManage"></Link></Menu.Item>
-            <Menu.Item key="uploadDog" >New Dog<Link to="/uploadDog"></Link></Menu.Item>
-            <Menu.Item key="updateDog" >Update Dog<Link to="/updateDog"></Link></Menu.Item>
-            <Menu.Item key="updateDoginfo" >Update Dog<Link to="/updateDoginfo"></Link></Menu.Item>
+            <Menu.Item key="about" >About Us<Link to="/about"></Link></Menu.Item>
+
 
             <SubMenu key="rightMenu" theme="dark" mode='horizontal' style={rightStyle} title={user.loggedIn && <span>{user.username}</span>} icon={<UserOutlined />} >
               {!user.loggedIn && <Menu.Item key="login" type="primary"  > <Link to="/login">Login</Link>
@@ -53,6 +51,8 @@ function Nav(props) {
               <Menu.Item key="humanManage" >Human Manage<Link to="/humanManage"></Link></Menu.Item>
               <Menu.Item key="uploadDog" >Upload Dog<Link to="/uploadDog"></Link></Menu.Item>
               <Menu.Item key="updateDoginfo" >Update Dog<Link to="/updateDoginfo"></Link></Menu.Item>
+              <Menu.Item key="uploadDogImage" >Upload Dog Image<Link to="/uploadDogImage"></Link></Menu.Item>
+
             </Menu>
           }
         </>

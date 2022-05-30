@@ -3,7 +3,8 @@ import '../App.css';
 import { Upload, Button, message, Alert } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
-class ImageUpload extends React.Component {
+
+class UploadDogForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,8 +43,6 @@ class ImageUpload extends React.Component {
         console.log("result ", result);
         console.log("isUPloadOK  ", this.state.isUploadOk);
         console.log("imgPosted ", this.state.imgPosted);
-        console.log("img path ", this.state.imgPosted.links);
-
 
       })
       .catch((error) => {
@@ -55,29 +54,6 @@ class ImageUpload extends React.Component {
           uploading: false,
         });
       });
-    fetch('https://Server.alexyu22.repl.co/api/v1/articles', {
-      method: "PUT",
-      body: JSON.stringify(this.state.imgPosted.links),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(status)
-      .then(json)
-      .then(data => {
-        message.success('successfully added!');
-
-        // For you TODO: display success message and/or redirect
-        console.log(data);
-        //this.context.regComplete();
-
-      })
-      .catch(errorResponse => {
-        // For you TODO: show nicely formatted error message and clear form
-        console.error(errorResponse);
-        alert(`Error: ${errorResponse}`);
-      });
-
   };
 
   render() {
@@ -103,31 +79,24 @@ class ImageUpload extends React.Component {
     };
 
     return (
-
-      <><div><h2>Select and Upload Image</h2>
-
-
-        <Upload {...props}>
-          <Button icon={<UploadOutlined />}>Select File</Button>
-        </Upload>
-        <Button
-          type="primary"
-          onClick={this.handleUpload}
-          disabled={fileList.length === 0}
-          loading={uploading}
-          style={{ marginTop: 16 }}
-        >
-          {uploading ? 'Uploading' : 'Start Upload'}
-        </Button>
-
-
-
-        {
-          this.state.isUploadOk && <div><p style={{ color: 'red' }}>Image uploaded successfully: </p><Alert message={JSON.stringify(this.state.imgPosted)} type="success" /> </div>}
-
+      <>
+          <div><h2>Select and Upload Image</h2> 
+            <Upload {...props}>
+              <Button icon={<UploadOutlined />}>Select File</Button>
+            </Upload>
+            <Button
+              type="primary"
+              onClick={this.handleUpload}
+              disabled={fileList.length === 0}
+              loading={uploading}
+              style={{ marginTop: 16 }}
+            >
+              {uploading ? 'Uploading' : 'Start Upload'}
+            </Button>
+            {this.state.isUploadOk && <div><p style={{ color: 'red' }}>Image uploaded successfully: </p><Alert message={JSON.stringify(this.state.imgPosted)} type="success" /> </div>}
       </div>
       </>
     );
   }
 }
-export default ImageUpload;
+export default UploadDogForm;
